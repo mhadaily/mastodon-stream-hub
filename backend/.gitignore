@@ -1,0 +1,62 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+*.bin
+
+# Output of the go coverage tool
+*.cover
+
+# Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
+.glide/
+
+# Dependency directories (remove the comment below if you're vendoring)
+# vendor/
+
+# IntelliJ
+.idea/
+
+# VSCode
+.vscode/
+
+# Compiled Object files, Static and Dynamic libs (Shared Objects)
+*.o
+*.a
+*.s
+
+# Folders
+_obj
+_test
+
+# Architecture specific extensions/prefixes
+*.[568vq]
+[568vq].out
+
+# Go build cache
+# Uncomment if you don't need to share the build cache
+# .cache
+
+# Binary files (uncomment if you're using git-lfs)
+# *.bin
+
+# Mac OS directory attributes
+.DS_Store
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*~
+
+# Logs
+*.log
+
+# Node.js dependencies
+node_modules/
+
+# Optional: Exclude the .env file if it contains sensitive information
+.env

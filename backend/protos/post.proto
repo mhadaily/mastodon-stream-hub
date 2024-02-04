@@ -1,0 +1,165 @@
+syntax = "proto3";
+
+package hubapiv1;
+option go_package = "github.com/mhadaily/mastodon-stream-hub/hubapiv1";
+
+import "google/protobuf/timestamp.proto";
+
+message PublicPost {
+  string id = 1;
+  string uri = 2;
+  string url = 3;
+  Account account = 4;
+  string in_reply_to_id = 5;
+  string in_reply_to_account_id = 6;
+  PublicPost reblog = 7;
+  string content = 8;
+  google.protobuf.Timestamp created_at = 9;
+  repeated Emoji emojis = 10;
+  int64 replies_count = 11;
+  int64 reblogs_count = 12;
+  int64 favourites_count = 13;
+  string reblogged = 14;
+  string favourited = 15;
+  string bookmarked = 16;
+  string muted = 17;
+  bool sensitive = 18;
+  string spoiler_text = 19;
+  string visibility = 20;
+  repeated Attachment media_attachments = 21;
+  repeated Mention mentions = 22;
+  repeated Tag tags = 23;
+  Card card = 24;
+  Poll poll = 25;
+  Application application = 26;
+  string language = 27;
+  string pinned = 28;
+}
+
+message Field {
+  string name = 1;
+  string value = 2;
+  google.protobuf.Timestamp verified_at = 3;
+}
+
+message AccountSource {
+  string privacy = 1; 
+  bool sensitive = 2; 
+  string language = 3; 
+  string note = 4;    
+  repeated Field fields = 5; 
+}
+
+message Account {
+  string id = 1;
+  string username = 2;
+  string acct = 3;
+  string display_name = 4;
+  bool locked = 5;
+  google.protobuf.Timestamp created_at = 6;
+  int64 followers_count = 7;
+  int64 following_count = 8;
+  int64 statuses_count = 9;
+  string note = 10;
+  string url = 11;
+  string avatar = 12;
+  string avatar_static = 13;
+  string header = 14;
+  string header_static = 15;
+  repeated Emoji emojis = 16;
+  Account moved = 17;  // Nested message for moved
+  repeated Field fields = 18;
+  bool bot = 19;
+  bool discoverable = 20;
+  AccountSource source = 21;
+}
+
+message Emoji {
+  string shortcode = 1;
+  string static_url = 2;
+  string url = 3;
+  bool visible_in_picker = 4;
+}
+
+message Card {
+  string url = 1;
+  string title = 2;
+  string description = 3;
+  string image = 4;
+  string type = 5;
+  string author_name = 6;
+  string author_url = 7;
+  string provider_name = 8;
+  string provider_url = 9;
+  string html = 10;
+  int64 width = 11;
+  int64 height = 12;
+}
+
+message AttachmentSize {
+  int64 width = 1;
+  int64 height = 2;
+  string size = 3;
+  double aspect = 4;  // Adjusted to double for float64
+}
+
+message AttachmentMeta {
+  AttachmentSize original = 1;
+  AttachmentSize small = 2;
+}
+
+message Attachment {
+  string id = 1;
+  string type = 2;
+  string url = 3;
+  string remote_url = 4;
+  string preview_url = 5;
+  string text_url = 6;
+  string description = 7;
+  AttachmentMeta meta = 8;
+}
+
+message Mention {
+  string url = 1;
+  string username = 2;
+  string acct = 3;
+  string id = 4;
+}
+
+message History {
+  string day = 1;
+  string uses = 2;
+  string accounts = 3;
+}
+
+message Tag {
+  string name = 1;
+  string url = 2;
+  repeated History history = 3;
+}
+
+message PollOption {
+  string title = 1;
+  int64 votes_count = 2;
+}
+
+message Poll {
+  string id = 1;
+  google.protobuf.Timestamp expires_at = 2;
+  bool expired = 3;
+  bool multiple = 4;
+  int64 votes_count = 5;
+  int64 voters_count = 6;
+  repeated PollOption options = 7;
+  bool voted = 8;
+  repeated int32 own_votes = 9;  // Adjusted to int32 for []int
+  repeated Emoji emojis = 10;
+}
+
+message Application {
+  string id = 1;
+  string redirect_uri = 2;
+  string client_id = 3;
+  string client_secret = 4;
+  string auth_uri = 5;  // Included for completeness
+}

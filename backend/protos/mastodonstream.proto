@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package hubapiv1;
+option go_package = "github.com/mhadaily/mastodon-stream-hub/hubapiv1";
+
+import "post.proto";
+
+service PubSubService {
+  rpc PublishPost(stream PublicPost) returns (PublishResponse);
+}
+
+message PublishResponse {
+  bool success = 1;
+  string message = 2;
+}

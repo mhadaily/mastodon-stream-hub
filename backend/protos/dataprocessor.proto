@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package hubapiv1;
+option go_package = "github.com/mhadaily/mastodon-stream-hub/hubapiv1";
+
+import "post.proto";
+import "pubsub.proto";
+
+service DataProcessor {
+  rpc ProcessData(PubSubGenericMessage) returns (PublicPost) {}
+}
