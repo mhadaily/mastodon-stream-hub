@@ -10,7 +10,7 @@ The initial goal was to ensure that microblogging with Mastodon posts from produ
 
 ## Architecture Overview
 
-![architecture](architecture.jpg)
+![architecture](architecture.png)
 
 ### Real-time Data Processing and Broadcasting Architecture
 
